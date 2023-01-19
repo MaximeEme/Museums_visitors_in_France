@@ -44,9 +44,19 @@ Cited - Med - It is first-party data.
 
 # Step 3: Process 
 
-I used R to conduct my analysis due to the accessibility of the program, amount of data and being able to create the visualisations.
+I begun the data cleaning on Gsheet to have a look on the data itself and see how I could prepare my work for analysis on R studio. 
 
-### 1.Installing packages and library 
+### 1. Gsheet 
+
+I took a look around the first file on year 2008 : 
+- I erased several columns such as street number, street, label, website, telephone, fax and tag. 
+- I separated in two columns the stat column which had the data on the free tickets and paid tickets. 
+- I created a new department column based on the first 2 digit of the postal code. 
+- I looked for any inconsistencies in the city, department, free tickets and paid tickets columns. 
+
+I repeated these steps for all ten files and then proceeded to continue on R studio. 
+    
+### 2.Installing packages and library in R studio. 
 
 ```{r}
 
@@ -90,107 +100,36 @@ I chose these packages to help me with my analysis.
 
 ```{r}
 
-X202004_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202004-divvy-tripdata.csv"),
-
-X202005_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202005-divvy-tripdata.csv"),
-
-X202006_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202006-divvy-tripdata.csv"),
-
-X202007_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202007-divvy-tripdata.csv"),
-
-X202008_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202008-divvy-tripdata.csv"),
-
-X202009_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202009-divvy-tripdata.csv"),
-
-X202010_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202010-divvy-tripdata.csv"),
-
-X202011_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202011-divvy-tripdata.csv"),
-
-X202012_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202012-divvy-tripdata.csv"),
-
-X202101_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202101-divvy-tripdata.csv"),
-
-X202102_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202102-divvy-tripdata.csv"),
-
-X202103_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202103-divvy-tripdata.csv"),
-
-X202104_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202104-divvy-tripdata.csv"),
-
-X202105_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202105-divvy-tripdata.csv"),
-
-X202106_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202106-divvy-tripdata.csv"), 
-
-X202107_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202107-divvy-tripdata.csv"), 
-
-X202108_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202108-divvy-tripdata.csv"), 
-
-X202109_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202109-divvy-tripdata.csv"), 
-
-X202110_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202110-divvy-tripdata.csv"), 
-
-X202111_divvy_tropdata <- read_csv("cyclistic spreadsheet files /202111-divvy-tripdata.csv"), 
-
-X202112_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202112-divvy-tripdata.csv"), 
-
-X202201_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202201-divvy-tripdata.csv"), 
-
-X202202_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202202-divvy-tripdata.csv"), 
-
-X202203_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202203-divvy-tripdata.csv")
-
-X202204_divvy_tripdata <- read_csv("cyclistic spreadsheet files /202204-divvy-tripdata.csv")
-
+Frequentation_musees_2008 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2009.csv"),
+Frequentation_musees_2009 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2009.csv"),
+Frequentation_musees_2010 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2010.csv"),
+Frequentation_musees_2011 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2011.csv"),
+Frequentation_musees_2012 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2012.csv"),
+Frequentation_musees_2013 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2013.csv"),
+Frequentation_musees_2014 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2014.csv"),
+Frequentation_musees_2015 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2015.csv"),
+Frequentation_musees_2016 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2016.csv"),
+Frequentation_musees_2017 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2017.csv"),
+Frequentation_musees_2018 <- read_csv("Frequentation_musees spreadsheet files /Frequentation_musees_2018.csv"),
 ```
 
-I also checked the data for inconsistencies in col datatypes. I noticed that some dataframes were wrongly formatted and I had to change that. I did the same code for every tables. 
+### 3.Data cleaning part II
+
+I checked for duplicated data in every tables. 
 
 ```{r}
 
-X202102_divvy_tripdata < mutate(X202102_divvy_tripdata, started_at = as.character(started_at), ended_at = as.character(ended_at))
-
-```
-
-### 3.Data cleaning 
-
-I checked the type of each bikes offered and member status of every tables. 
-
-```{r}
-
-n_unique(X202102_divvy_tripdata$rideable_type)
-
-n_unique(X202102_divvy_tripdata$member_casual)
-
-```
-
-> [1] 3
-
-> [1] 2
-
-I checked for duplicated rides in every tables. 
-
-```{r}
-
-sum(duplicated(X202102_divvy_tripdata))
+sum(duplicated(Frequentation_musees_2008))
 
 ```
 
 > [1] 0
 
-I removed negative time of every tables. 
-
-```{r}
-
-X202102_divvy_tripdata %>% filter(ended_at < started_at) %>% count()
-
-bike_tripdata_202102 <- bike_tripdata_202102 %>% filter(ended_at > started_at)
-
-```
-
 I removed rows with NA values in every tables. 
 
 ```{r}
 
-bike_tripdata_202102 <- bike_tripdata_202102 %>% drop_na()
+frequentation_musees_2008 <- frequentation_musees_2008 %>% drop_na()
 
 ```
 
@@ -198,202 +137,84 @@ I cleaned and formatted the columns names of every tables.
 
 ```{r}
 
-clean_names(bike_tripdata_202102)
+clean_names(frequentation_musees_2008)
 
-bike_tripdata_202102 <- rename_with(bike_tripdata_202102, tolower)
-
-```
-
-I formatted the datetime columns from chr to datetime in every tables. 
-
-```{r}
-
-bike_tripdata_202102 <- bike_tripdata_202102 %>% mutate(started_at = ymd_hms(started_at), ended_at = ymd_hms(ended_at))
+frequentation_musees_2008 <- rename_with(frequentation_musees_2008, tolower)
 
 ```
 
 I merged and renamed the file. 
 
 ```{r}
-
-bike_tripdata <- bind_rows (X202004_divvy_tripdata, X202005_divvy_tripdata, X202006_divvy_tripdata,, X202007_divvy_tripdata, X202008_divvy_tripdata, X202009_divvy_tripdata, X202010_divvy_tripdata, X202011_divvy_tripdata, X202012_divvy_tripdata, X202101_divvy_tripdata, X202102_divvy_tripdata, X202103_divvy_tripdata, X202104_divvy_tripdata, X202105_divvy_tripdata, X202106_divvy_tripdata,  X202107_divvy_tripdata, X202108_divvy_tripdata,  X202109_divvy_tripdata, X202110_divvy_tripdata, X202111_divvy_tropdata, X202112_divvy_tripdata, X202201_divvy_tripdata, X202202_divvy_tripdata, 
-
-X202203_divvy_tripdata, X202204_divvy_tripdata)
-
+Frequentation_musees <- bind_rows(Frequentation_musees_2008, Frequentation_musees_2009, Frequentation_musees_2010, Frequentation_musees_2011, Frequentation_musees_2012, Frequentation_musees_2013, Frequentation_musees_2014, Frequentation_musees_2015, Fréquentation_musees_2016, Frequentation_musees_2017, Frequentation_musees_2018,)
 ```
 
-I extracted the day from the started_at column. 
+I created a region column. 
 
 ```{r}
-
-bike_tripdata <- bike_tripdata %>%  mutate(weekday = wday(started_at, label = TRUE, abbr = TRUE))
-
-```
-
-I extracted the time from the started_at and ended_at columns. 
-
-```{r}
-
-bike_tripdata <- bike_tripdata %>% mutate(start_time = format(started_at, "%H:%M:%S"))%>% mutate(end_time = format(ended_at, "%H:%M:%S")) %>% mutate(start_time = hms(start_time))%>% mutate(end_time = hms(end_time))
-
-```
-
-I extracted the hour from the started_at column.
-
-```{r}
-
-bike_tripdata <- bike_tripdata %>% mutate(hour = hour(start_time))
-
-```
-
-I created a duration column. 
-
-```{r}
-
-bike_tripdata$duration <- difftime(bike_tripdata$ended_at, bike_tripdata$started_at, units = "mins")
-
+Frequentation_musees <- Frequentation_musees %>% mutate(region = case_when(no_departement %in% c("1", "3", "7", "15", "26", "38", "42", "43", "63", "69", "73", "74") ~ "Auvergne-Rhône-Alpes",no_departement %in% c("89", "21", "70", "90", "25", "39", "71", "58") ~ "Bourgogne-Franche-Comté",no_departement %in% c("8", "55", "54", "57", "67", "68", "88", "52", "10", "51") ~ "Grand Est",no_departement %in% c("62", "59", "2", "80", "60") ~ "Hauts-de-France",no_departement %in% c("75", "92", "93", "94", "95", "77", "91", "78") ~ "Ile-De-France",no_departement %in% c("50", "14", "61", "27", "76") ~ "Normandie",no_departement %in% c("53", "72", "44", "49", "85") ~ "Pays De La Loire",no_departement %in% c("29", "22", "35", "56") ~ "Bretagne",no_departement %in% c("62", "59", "2", "80", "28", "45", "41", "18", "37", "36") ~ "Centre-Val De Loire",no_departement %in% c("79", "86", "87", "23", "19", "24", "16", "17", "33", "47", "40", "64") ~ "Nouvelle Aquitaine",no_departement %in% c("46", "12", "48", "30", "34", "81", "82", "32", "31", "65", "9", "11", "66") ~ "Occitanie",no_departement %in% c("13", "84", "4", "5", "6", "83") ~ "Provence-Alpes-Côte d'Azur"))
 ```
 
 # Step 4: Analyse 
 
-### 1.Determine the number of member vs casual riders. 
+### 1. Determine the number of museum open vs total. 
 
-I wanted to determine the number of actual member vs the number of casual riders.
+I wanted to know how many museums were open and the total (including the closed ones). 
 
 ```{r}
+open_closed_year <- Frequentation_musees %>% group_by(year) %>% summarise(open = sum(status1))
+musee_total <- Frequentation_musees %>% group_by(year) %>% summarise(total = sum(status2))
+musee_open_closed_total <- merge(open_closed_year, musee_total, by=c("year"))
+```
 
-table(bike_tripdata$member_casual)
+### 2. Number of tickets per year. 
 
-table(bike_tripdata$rideable_type)
+Then, I wanted to see the number of tickets per year. 
+
+```{r}
+tickets_per_year <- Frequentation_musees %>% group_by(year) %>% summarise(free_tickets = sum(nb_free_tickets), paid_tickets = sum(nb_paid_tickets))
+```
+
+### 3. Number of tickets per year and department. 
+
+I wondered about the number of tickets in each department assuming that 75 (Paris) was the first one in visitors. 
+
+```{r}
+tickets_per_departement_year <- Frequentation_musees %>% group_by(no_departement, year) %>% summarise(free_tickets = sum(nb_free_tickets), paid_tickets = sum(nb_paid_tickets))
 
 ```
 
-Casual : 1,763,917
+### 4.Determine the top 2 museums per region and year. 
 
-Member : 2,802,582
-
-I plotted the results. 
-
-[Count of users.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950790/Count.of.users.pdf)
-
-From April 2020 to April 2022, the company had more member (customers that pay a membership fee) than casual riders. 
-
-### 2. Number of rides per users and type of bikes. 
-
-Then, I wanted to see the number of rides per users (member and casual) by rides offered (electric, classic and docked bikes) and also the percentage. 
+I wanted to know which museums were the most visited in the 12 regions by free tickets and paid tickets. 
 
 ```{r}
+musees_free_tickets_per_region_year <- Frequentation_musees %>% select(name,year, nb_free_ticket, region) %>%  arrange(region, year, desc(nb_free_tickets)) %>% group_by(region, year) %>% slice(1:2) %>% ungroup()
+musees_paid_tcikets_per_region_year <- Frequentation_musees %>% select(name,year, nb_paid_tickets, region) %>%  arrange(region, year, desc(nb_paid_tickets)) %>% group_by(region, year) %>% slice(1:2) %>% ungroup()
+```
 
-bike_percentage <- bike_tripdata %>% select(ride_id, member_casual, rideable_type) %>% group_by(rideable_type, member_casual) %>% count() %>% mutate(percentage = (n/42994*100)) %>% arrange(-percentage)
+### 5.Getting the Top 10 departments with the most visited museums. 
+
+I wanted to be more precise by having the top 10 departments with the most visited museums.  
+
+```{r}
+Total_visits_department <- Frequentation_musees %>% group_by(no_departement) %>% summarise(total_free_tickets = sum(nb_free_tickets), total_paid_tickets = sum(nb_paid_tickets))
 
 ```
 
-I also plotted the results. 
+### 6. Ranking the regions according to their total free tickets and paid tickets. 
 
-[Usage of bikes between casual and members riders.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950762/Usage.of.bikes.between.casual.and.members.riders.pdf)
-
-Docked bikes are the go-to bikes from casual riders and member riders. Classic bikes (which are dockless are number 2 in casual but close second for member) and electric bikes are third. Both casual and member seem to like to rely on dock bikes and trust the system to go around. 
-
-### 3. The number of rides per month. 
-
-I wondered which months had the most users. 
+I thought that ranking the regions according to their total free tickets and paid tickets would bring interesting results even if I knew that Ile-De-France would be first.
 
 ```{r}
-
-bike_trip_month <- bike_tripdata %>% select(member_casual, month) %>% group_by(member_casual, month)%>% count()%>% arrange(member_casual)
-
-member_month <-  filter(bike_trip_month, member_casual =="member")
-
-casual_month <-  filter(bike_trip_month, member_casual =="casual")
+Total_visits_region <- Frequentation_musees %>% group_by(region) %>% summarise(total_free_tickets = sum(nb_free_tickets), total_paid_tickets = sum(nb_paid_tickets))
 
 ```
-
-I plotted the results. 
-
-[Number of rides per months of member.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950517/Number.of.rides.per.months.of.member.pdf)
-[Number of rides per months of casual users.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950518/Number.of.rides.per.months.of.casual.users.pdf)
-
-
-May, July and September are casual’s busiest month. It is no surprise to witness spring and summer months being the busiest month for the bike sharing company. The member are again more consistent in their use of the bike throughout the year with May, July and November being the busiest but nine month out of the twelves have at least 200,000 rides which is surprising. 
-
-### 4.Determine the number of rides for each day. 
-
-I wanted to determine which day of the week was the busiest for each type of membership. 
-
-```{r}
-bike_trip_weekdays <- bike_tripdata %>% select(member_casual, weekday) %>% group_by(member_casual, weekday)%>% count()%>% arrange(member_casual)
-
-member_weekday <-  filter(bike_trip_weekdays, member_casual =="member")
-
-casual_weekday <-  filter(bike_trip_weekdays, member_casual =="casual")
-
-```
-And I plotted the results. 
-
-[Number of rides per days of casual users.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950515/Number.of.rides.per.days.of.casual.users.pdf)
-[Number of rides per days of member.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950516/Number.of.rides.per.days.of.member.pdf)
-
-According to the plots, member riders are the most consistent in using the bikes. 5 days of the week exceeding the 400,000 rides in the member category with Tuesday, Wednesday, Thursday in the top 3. The casual riders mostly use the bikes on Saturday with roughly 400000 rides. 
-
-The difference between member and casual riders can be explained through the idea of commute + leisure for the member but only for leisure for the casual riders. 
-
-### 5.Getting the number of rides per hour. 
-
-I wanted to be more precise by having the number of rides per hour for each membership.  
-
-```{r}
-
-bike_trip_hour <- bike_tripdata %>% select(member_casual, hour) %>% group_by(member_casual, hour)%>% count()%>% arrange(hour)
-
-member_hour <-  filter(bike_trip_hour, member_casual =="member")
-
-casual_hour <- filter(bike_trip_hour, member_casual =="casual")
-
-```
-
-And I plotted the results.
-
-[Number of rides per hours of member.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950513/Number.of.rides.per.hours.of.member.pdf)
-[Number of rides per hours of casual users.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950514/Number.of.rides.per.hours.of.casual.users.pdf)
-
-Member riders mostly use the bike to commute back home with a massive peak of use between 3 pm and 8pm (15h to 20h). The same time slot for the casual riders is the highest peak but can’t be compared to the member’s usage in term of number. It can be said that member use bikes throughout the day with some consistency to the difference of the casual users that have a growing pattern from 10 am to 3 pm. 
-
-### 6. Mapping of data coordinates of member and casual. 
-
-I thought that it would be a very interesting way to show ride data. I used Tableau to do it using the map graph. 
-
-[Most used bike routes by member.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950452/Most.used.bike.routes.by.member.pdf)
-[Most used bike stations by casual users.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950519/Most.used.bike.stations.by.casual.users.pdf)
-
-As the graphs show, Member riders are along the lake-shore and a bit more inland but use more stations overall and have more ride from a station a to a station b. Casual riders on the other hand ride more along the lake-shore and have more ride from station a and return to that same station a. 
-
-### 7.Mean duration and mean duration for member and casual riders. 
-
-```{r}
-
-bike_trip_mean_duration <- bike_tripdata %>% select(member_casual, duration)%>% summarise(mean_duration = mean(duration))
-
-casual_mean_duration <-  bike_tripdata %>% filter(member_casual == 'casual')
-
-casual_mean_duration %>% select(member_casual, duration) %>% summarise(mean_duration = mean(duration))
-
-member_mean_duration <-  bike_tripdata %>% filter(member_casual == 'member')
-
-member_mean_duration %>% select(member_casual, duration)%>% summarise(mean_duration = mean(duration))
-
-mean_duration <- bike_tripdata %>% group_by(member_casual)%>% summarise(mean_duration = mean(duration))
-
-```
-
-And I plotted the results. 
-
-[Mean duration travelled by riders.pdf](https://github.com/MaximeEme/Cyclistic-bike-sharing/files/9950761/Mean.duration.travelled.by.riders.pdf)
-
-I can confirm that the mean duration of a bike trip by casual riders is more than 40 minutes long compared to the 15 minutes of the member riders. it confirmes that the casual riders use the bike for leisure. 
-
 # Step 5: Share phase 
 
-See the graphs throughout this document 
+I created these two interactives dashboards on Tableau to expose my finding. 
+
+[link](https://public.tableau.com/app/profile/maxime3299/viz/MuseumsvisitsinFrance2008-2018/MuseumsvisitsinFranceovera10yearperiod_?publish=yes)
 
 # Step 6: Act phase 
 
