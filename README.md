@@ -214,23 +214,8 @@ Total_visits_region <- Frequentation_musees %>% group_by(region) %>% summarise(t
 
 I created these two interactives dashboards on Tableau to expose my finding. 
 
-[link](https://public.tableau.com/app/profile/maxime3299/viz/MuseumsvisitsinFrance2008-2018/MuseumsvisitsinFranceovera10yearperiod_?publish=yes)
+[Museum's visits in France](https://public.tableau.com/app/profile/maxime3299/viz/MuseumsvisitsinFrance2008-2018/MuseumsvisitsinFranceovera10yearperiod_?publish=yes)
+[Maps of Musseum's visits in France](https://public.tableau.com/views/MapsofmuseumsvisitsinFrance2008-2018/MapsofmuseumsvisitsinFranceovera10yearperiod_?:language=fr-FR&:display_count=n&:origin=viz_share_link)
 
 # Step 6: Act phase 
-
-As I said, over the two-year period that I covered (2020/2022), they were more member than casual riders. The member preferred the docked bikes and the classic bike being close second than electrical bikes. 
-
-Member ride more during the week than casual member that ride mostly during the weekend, but casual member have a longer ride duration than member. It can be explained by the fact that member ride to commute to work or to go home while casual ride for leisure. 
-
-Member and casual riders ride more in the evening period, but member also ride a lot during the morning of the work week. 
-
-Recommendations : 
-
-- Plan campaigns to promote the health benefits of using bike to commute to work and the environment benefits. 
-
-- Create an app that could track the activity of riders (i.e. calories burned or CO2 rejections prevented).
-
-- Create partnership with local companies to promote the usage of bike through discount memberships or stations nearby. 
-
-- Increase bikes availability in the top 10 start stations. 
 
