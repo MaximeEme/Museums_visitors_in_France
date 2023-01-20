@@ -220,8 +220,13 @@ I created these two interactive dashboards on Tableau to expose my findings.
 # Step 6: Act phase 
 
 1/ From 2008 to 2018, there's been a 4.7% decrease in museum's accreditation by the Ministry from 1219 museums in 2008 to 1161 in 2018. That represents 58 museums that disappeared from the Ministry's registry. The number of open museums has been stable during that 10 year period even though 21 museums closed doors, representing a 1.9% decrease.
+
 2/ Museums have witnessed an important rise in visits either paid or free in those 10 years. Starting with the paid tickets, it represents a 50% increase in tickets sold between 2008 and 2018. 37% is the increase of free tickets from 2008 and 2018. It established France as a powerhouse of culture.
+
 3/ Paris (75) is indeed the department with the most visitors while Haute-Loire (43) is the department with the least visitors.
+
 4/ Musée du Louvre is the most visited museum in Paris, Ile-de-France and France and in both paid and free tickets. It is interesting to see that 6 regions have different museums in the two categories (Normandie, Pays de la Loire, PACA, Auvergne-Rhône-Alpes, Grand Est, Centre-Val-de-Loire).
+
 5/ Those 10 tens are not surprising. They represent each one a major city in France except Haut-Rhin (68) and Côte-d'or (21).
+
 6/ Ile-de-France is dominating each and every region in terms of tickets in museums. The second is PACA with only 21 715 898 millions which is x6 less visitors than Ile-de-France and the third region with most visitors is Auvergne-Rhône-Alpes with 18 129 211 millions visitors. 
