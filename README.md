@@ -1,4 +1,4 @@
-# MUSEUM'S VISITS IN FRANCE 
+# MUSEUMS & VISITORS IN FRANCE 
 
 This is a personal project produced during my free time to demonstrate my personal skills in spreadsheet, R studio and Tableau. 
 
