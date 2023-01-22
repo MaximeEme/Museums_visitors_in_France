@@ -184,7 +184,7 @@ tickets_per_departement_year <- Frequentation_musees %>% group_by(no_departement
 
 ```
 
-### 4.Determine the N°1 museums per region and year. 
+### 4.Determine the most visited museums per region and year. 
 
 I wanted to know which museums were the most visited in the 13 regions by free tickets and paid tickets. 
 
