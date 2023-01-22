@@ -214,8 +214,8 @@ Total_visits_region <- Frequentation_musees %>% group_by(region) %>% summarise(t
 
 I created these two interactive dashboards on Tableau to expose my findings. 
 
-[Museum's visits in France](https://public.tableau.com/app/profile/maxime3299/viz/MuseumsvisitsinFrance2008-2018/MuseumsvisitsinFranceovera10yearperiod_?publish=yes)
-[Maps of Musseum's visits in France](https://public.tableau.com/views/MapsofmuseumsvisitsinFrance2008-2018/MapsofmuseumsvisitsinFranceovera10yearperiod_?:language=fr-FR&:display_count=n&:origin=viz_share_link)
+[Museums & visitors in France](https://public.tableau.com/views/MuseumsvisitorsinFrance2008-2018/MuseumsvisitorsinFranceovera10yearperiod_?:language=fr-FR&:display_count=n&:origin=viz_share_link) 
+[Maps of Musseums & visitors in France](https://public.tableau.com/views/MapsofmuseumsvisitorsinFrance2008-2018/MapsofmuseumsvisitsinFranceovera10yearperiod_?:language=fr-FR&:display_count=n&:origin=viz_share_link)
 
 # Step 6: Act phase 
 
